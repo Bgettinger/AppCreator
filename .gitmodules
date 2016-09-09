@@ -1,3 +1,6 @@
 [submodule "Utils"]
 	path = Utils
 	url = https://github.com/dhDZsG9QfQK3VTiF5KOs/Utils.git
+[submodule "utils"]
+	path = utils
+	url = https://github.com/dhDZsG9QfQK3VTiF5KOs/Utils.git
