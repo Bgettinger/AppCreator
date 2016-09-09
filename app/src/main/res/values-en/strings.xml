@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">AppCreator</string>
+	<string name="app_name_input">App Name</string>
+	<string name="app_name_input_prompt">App name:</string>
+	<string name="create_button">Create</string>
+	<string name="next">Next</string>
+	<string name="ok">OK</string>
+	<string name="package_input">Package name</string>
+	<string name="package_input_prompt">Package name:</string>
+	<string name="external_storage_read_fail">Cannot read from external storage</string>
+	<string name="retry">Retry</string>
+</resources>

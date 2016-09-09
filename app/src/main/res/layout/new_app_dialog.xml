@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="@dimen/abc_dialog_padding_top_material">
+	<TableRow android:layout_width="wrap_content" android:layout_height="match_parent">
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/app_name_input_prompt"/>
+		<EditText android:id="@+id/app_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="textCapWords|none|text"/>
+	</TableRow>
+	<TableRow android:layout_width="wrap_content" android:layout_height="match_parent">
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/package_input_prompt"/>
+		<EditText android:id="@+id/package_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="textNoSuggestions|none|text"/>
+	</TableRow>
+</TableLayout>
