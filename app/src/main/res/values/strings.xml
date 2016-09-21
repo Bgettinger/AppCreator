@@ -1,12 +1,11 @@
 <resources>
 	<string name="app_name">AppCreator</string>
-	<string name="create_button">Create</string>
+	<string name="new_app_button">New app</string>
 	<string name="app_name_input">App name</string>
 	<string name="app_name_input_prompt">App name:</string>
 	<string name="package_input">Package name</string>
 	<string name="package_input_prompt">Package name:</string>
 	<string name="next">Next</string>
-	<string name="ok">OK</string>
 	<string name="external_storage_read_fail">Cannot read from external storage</string>
 	<string name="retry">Retry</string>
 </resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns:config="config" targetNamespace="config" xmlns="http://www.w3.org/2001/XMLSchema">
+	<element name="config" type="config:content"/>
+	<complexType name="content">
+		<choice maxOccurs="unbounded" minOccurs="0">
+			<element name="filter" type="config:filter"/>
+			<element name="preference" type="config:preference"/>
+		</choice>
+	</complexType>
+	<complexType name="filter">
+		<attribute name="by">
+			<simpleType>
+				<restriction>
+					<enumeration value="version"/>
+					<enumeration value="height"/>
+					<enumeration value="width"/>
+					<enumeration value="density"/>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</complexType>
+	<complexType name="preference">
+
+	</complexType>
+</schema>

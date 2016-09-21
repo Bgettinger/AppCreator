@@ -15,24 +15,23 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.solly.appcreator.Utils.isExternalStorageWritable;
 
+public final class MainActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	@Override protected void onCreate(Bundle savedInstanceState) {
 		// Calling superclass creator
 		super.onCreate(savedInstanceState);
 
 		// Setting standard view to main activity
 		setContentView(R.layout.activity_main);
 
-		File tld = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+		//File tld = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+		File tld = getExternalFilesDir(Environment.getDataDirectory().getAbsolutePath());
+
 		new File(tld, "AppCreator").mkdir();
 
 		// Store the list of applications in the variable apps
-		SharedPreferences sharedPref = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
+		SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
 		for(String app : sharedPref.getStringSet("apps", new HashSet<String>())) {
 
@@ -40,35 +39,20 @@ public class MainActivity extends AppCompatActivity {
 
 		ImageButton createButton = (ImageButton) findViewById(R.id.create);
 		createButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				new AlertDialog.Builder(MainActivity.this)
-						.setView(MainActivity.this.getLayoutInflater().inflate(R.layout.new_app_dialog, null))
-						.setPositiveButton(R.string.next, new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int id) {
-								if(isExternalStorageWritable()) {
-									SharedPreferences sharedPref = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
-									SharedPreferences.Editor editor = sharedPref.edit();
-									Set<String> apps = sharedPref.getStringSet("apps", new HashSet<String>());
-									apps.add(MainActivity.this.findViewById(R.id.app_name).toString());
-									editor.putStringSet("apps", apps);
-									editor.apply();
-								} else {
-									new AlertDialog.Builder(MainActivity.this)
-											.setMessage(R.string.ok)
-											.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-												@Override
-												public void onClick(DialogInterface dialog, int id) {
-													dialog.dismiss();
-												}
-											})
-											.create();
-								}
-								dialog.dismiss();
-							}
-						})
-						.create();
+			@Override public void onClick(View v) {
+				AlertDialog.Builder newAppDialog = new AlertDialog.Builder(MainActivity.this);
+				newAppDialog.setView(MainActivity.this.getLayoutInflater().inflate(R.layout.new_app_dialog, null));
+				newAppDialog.setPositiveButton(R.string.next, new DialogInterface.OnClickListener() {
+					@Override public void onClick(DialogInterface dialog, int id) {
+						SharedPreferences sharedPref = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
+						SharedPreferences.Editor editor = sharedPref.edit();
+						Set<String> apps = sharedPref.getStringSet("apps", new HashSet<String>());
+						apps.add(MainActivity.this.findViewById(R.id.app_name).toString());
+						editor.putStringSet("apps", apps);
+						editor.apply();
+						dialog.dismiss();
+					}
+				}).create();
 			}
 		});
 	}
